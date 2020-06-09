@@ -1,7 +1,27 @@
 .container {
-    max-width: 600px;
+    max-width: 400px;
+    /* background: lightcyan; */
+    font-family: 'Roboto', sans-serif;
 }
 
-.details ul{
+.card {
+    border: none;
+      background-color: lightcyan;
+    border: 1px solid lightcyan;
+}
+
+.card img {
+    height: 250px;
+}
+
+
+.details ul {
     list-style-type: none;
+    padding-left: 0;
+}
+
+.card-body {
+    /* background-color: lightcyan;
+    border: 1px solid lightcyan; */
+    text-align: center;
 }
