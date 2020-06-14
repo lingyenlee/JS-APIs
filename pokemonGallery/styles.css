@@ -10,11 +10,28 @@
 .card {
     width: 18rem;
     text-align: center;
+    margin: 10px 0;
     /* display: flex;
     justify-content: center; */
 }
 
+.card-title {
+    text-transform: capitalize;
+}
+
 .card img {
+    padding: 15px;
     width: 14rem;
-  
+    margin: auto;
+}
+
+.card-text {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.fa-ruler-vertical,
+.fa-weight {
+    height: 20px;
+
 }
