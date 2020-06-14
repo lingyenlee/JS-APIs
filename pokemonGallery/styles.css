@@ -1,0 +1,20 @@
+.card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    justify-content: space-evenly;
+    margin: auto;
+    /* align-items: stretch; */
+}
+
+.card {
+    width: 18rem;
+    text-align: center;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.card img {
+    width: 14rem;
+  
+}
