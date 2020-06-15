@@ -1,12 +1,28 @@
+const cardWrapper = document.querySelector(".card-wrapper")
+const currentPage = document.querySelector(".current")
+const currentAnchor = document.querySelector(".page-link.current")
+const nextPage = document.querySelector(".next")
+const nextAnchor = document.querySelector(".page-link.next")
+const prevPage = document.querySelector(".prev")
+const prevAnchor = document.querySelector(".page-link.prev")
 
-const fetchPokemon = async () => {
+let currentPageNum = 1
+let numPerPage = 20
+const totalPageCount = Math.ceil(964 / 20)
+currentAnchor.innerHTML = `Page ${currentPageNum} of ${totalPageCount}`
+currentPage.append(currentAnchor)
 
+
+
+const fetchPokemon = async (e, num) => {
+
+    e.preventDefault()
+    let url = `https://pokeapi.co/api/v2/pokemon?limit=${numPerPage}&offset=${(num - 1) * numPerPage}`
+    //console.log(url)
     try {
-        const response = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=80")
+        const response = await axios.get(url)
         const allPokemons = await response.data.results
-
-        console.log(response.data)
-        // console.log(getNumberOfPages(allPokemons))
+        // console.log(response)
 
         allPokemons.forEach(pokemon => {
             fetchPokemonData(pokemon)
@@ -17,23 +33,23 @@ const fetchPokemon = async () => {
 }
 
 
-const fetchPokemonData = async data => {
+const fetchPokemonData = async (data) => {
 
     try {
         const response = await axios(`https://pokeapi.co/api/v2/pokemon/${data.name}`)
         const pokemonData = await response.data
-        //console.log(pokemonData.length)
         displayPokemonData(pokemonData)
 
     } catch (error) {
         console.error(error)
     }
+
 }
 
 const displayPokemonData = (data) => {
 
     //get or create element from DOM
-    const cardWrapper = document.querySelector(".card-wrapper")
+
     const card = document.createElement("div")
     const cardBody = document.createElement("div")
     const cardTitle = document.createElement("h5")
@@ -73,14 +89,29 @@ const displayPokemonImage = (id, div) => {
 
 }
 
-fetchPokemon()
 
-function getNumberOfPages(data) {
+// const totalNumPages = (data) => {
+//     return Math.ceil(data.count / numPerPage)
+// }
+window.addEventListener("load", (e) => {
+    e.preventDefault()
+    fetchPokemon(e, currentPageNum)
+}, false)
 
-    return Math.ceil(data.length / 15)
 
-}
+nextPage.addEventListener("click", (e) => {
+    e.preventDefault()
+    console.log("before", currentPageNum)
+    currentPageNum++
+    fetchPokemon(e, currentPageNum)
+    console.log("after click", currentPageNum)
 
-const list = new Array()
-const pagelist = new Array()
+}, false)
+
+prevPage.addEventListener("click", (e) => {
+    e.preventDefault()
+    currentPageNum--
+    console.log(currentPageNum)
+}, false)
+
 
