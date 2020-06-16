@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     width: 80%;
     justify-content: space-evenly;
-    margin: auto;
+    margin: 20px auto;
     /* align-items: stretch; */
 }
 
@@ -35,4 +35,30 @@
 .fa-weight {
     height: 20px;
 
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.pagination button {
+    margin: 0 5px;
+}
+
+.pagination-wrapper {
+    flex:1;
+    display: flex;
+    justify-content: flex-end;
+}
+.search-wrapper {
+    text-align: center;
+    flex:1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#search-bar {
+    width: 70%;
 }

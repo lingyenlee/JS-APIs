@@ -19,15 +19,23 @@
 
             <h1 class="display-4">Pokemon Gallery</h1>
             <p class="lead">Check out your favourite pokemons here!</p>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end">
-                    <li class="page-item prev"><a class="page-link prev" href="#">Previous</a></li>
-                    <li class="page-item current"><a class="page-link current"></a></li>
-                    <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li> -->
-                    <li class="page-item next"><a class="page-link next" href="#">Next</a></li>
-                </ul>
-            </nav>
+            <div class="nav">
+                <div class="search-wrapper ">
+                    <input class="form-control" type="text" id="search-bar" placeholder="Search by name eg.pikachu" />
+                    <button id="search-btn" class="btn btn-light">Search</button>
+                    <button id="reset-btn" class="btn btn-light">Reset</button>
+                </div>
+                <div class="pagination-wrapper">
+                    <div class="pagination">
+                        <!-- <button id="first">First Page</button> -->
+                        <button id="previous" class="btn btn-dark">&lt; Previous</button>
+                        <button id="current" class="btn btn-dark"></button>
+                        <!-- Page <span id="current"></span> of <span id="total"></span> -->
+                        <button id="next" class="btn btn-dark">Next &gt;</button>
+                        <!-- <button id="last">Last Page</button> -->
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="cards card-wrapper">
             <!-- dynamically display cards -->

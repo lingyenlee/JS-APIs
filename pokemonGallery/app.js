@@ -1,42 +1,56 @@
 const cardWrapper = document.querySelector(".card-wrapper")
-const currentPage = document.querySelector(".current")
-const currentAnchor = document.querySelector(".page-link.current")
-const nextPage = document.querySelector(".next")
-const nextAnchor = document.querySelector(".page-link.next")
-const prevPage = document.querySelector(".prev")
-const prevAnchor = document.querySelector(".page-link.prev")
 
-let currentPageNum = 1
+//pagination buttons
+const firstPage = document.querySelector("#first")
+const previousButton = document.querySelector("#previous")
+const nextButton = document.querySelector("#next")
+const currentPage = document.querySelector("#current")
+const lastPage = document.querySelector("#last")
 let numPerPage = 20
-const totalPageCount = Math.ceil(964 / 20)
-currentAnchor.innerHTML = `Page ${currentPageNum} of ${totalPageCount}`
-currentPage.append(currentAnchor)
+let currentPageNum = 1
+const totalPageCount = Math.ceil(800 / 20)
+console.log(totalPageCount)
+
+//search buttons
+const searchBtn = document.querySelector("#search-btn")
+const searchBar = document.querySelector("#search-bar")
+const resetBtn = document.querySelector("#reset-btn")
+
+searchBtn.addEventListener("click", () => {
+
+    fetchPokemonData(searchBar.value)
+    cardWrapper.innerHTML = ""
+
+})
 
 
-
+//make pokemon API call to get 20 pokemons each time
 const fetchPokemon = async (e, num) => {
+
 
     e.preventDefault()
     let url = `https://pokeapi.co/api/v2/pokemon?limit=${numPerPage}&offset=${(num - 1) * numPerPage}`
-    //console.log(url)
     try {
         const response = await axios.get(url)
         const allPokemons = await response.data.results
-        // console.log(response)
+       // console.log(allPokemons)
 
+        cardWrapper.innerHTML = ""
         allPokemons.forEach(pokemon => {
-            fetchPokemonData(pokemon)
+            fetchPokemonData(pokemon.name)
         })
     } catch (error) {
         console.error(error)
     }
+
+    updatePage(num)
 }
 
 
 const fetchPokemonData = async (data) => {
 
     try {
-        const response = await axios(`https://pokeapi.co/api/v2/pokemon/${data.name}`)
+        const response = await axios(`https://pokeapi.co/api/v2/pokemon/${data}`)
         const pokemonData = await response.data
         displayPokemonData(pokemonData)
 
@@ -86,32 +100,55 @@ const displayPokemonImage = (id, div) => {
     pokemonImg.setAttribute("src", `https://pokeres.bastionbot.org/images/pokemon/${id}.png`)
 
     div.append(pokemonImg)
-
 }
 
+const updatePage = (num) => {
 
-// const totalNumPages = (data) => {
-//     return Math.ceil(data.count / numPerPage)
-// }
+    currentPage.innerHTML = `Page ${num} of ${totalPageCount}`
+
+    if (num === 1) {
+        previousButton.disabled = true
+    } else {
+        previousButton.disabled = false
+    }
+
+    if (num === totalPageCount) {
+        nextButton.disabled = true
+    } else {
+        nextButton.disabled = false
+    }
+}
+
 window.addEventListener("load", (e) => {
     e.preventDefault()
     fetchPokemon(e, currentPageNum)
 }, false)
 
 
-nextPage.addEventListener("click", (e) => {
+nextButton.addEventListener("click", (e) => {
     e.preventDefault()
-    console.log("before", currentPageNum)
     currentPageNum++
     fetchPokemon(e, currentPageNum)
-    console.log("after click", currentPageNum)
-
+    updatePage(currentPageNum)
 }, false)
 
-prevPage.addEventListener("click", (e) => {
+previousButton.addEventListener("click", (e) => {
     e.preventDefault()
     currentPageNum--
-    console.log(currentPageNum)
+    fetchPokemon(e, currentPageNum)
 }, false)
 
+resetBtn.addEventListener("click", (e) => {
+    fetchPokemon(e, currentPageNum),
+        searchBar.value = ""
+}, false)
+// lastPage.addEventListener("click", (e) => {
+//     e.preventDefault()
+//     fetchPokemon(e, totalPageCount)
+// })
 
+// firstPage.addEventListener("click", (e) => {
+//     e.preventDefault()
+//     fetchPokemon(e, 1)
+//     console.log()
+// } )
