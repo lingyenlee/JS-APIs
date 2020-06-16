@@ -19,6 +19,8 @@ const resetBtn = document.querySelector("#reset-btn")
 searchBtn.addEventListener("click", () => {
 
     fetchPokemonData(searchBar.value)
+
+    //clear page
     cardWrapper.innerHTML = ""
 
 })
@@ -27,15 +29,16 @@ searchBtn.addEventListener("click", () => {
 //make pokemon API call to get 20 pokemons each time
 const fetchPokemon = async (e, num) => {
 
-
-    e.preventDefault()
+    // e.preventDefault()
     let url = `https://pokeapi.co/api/v2/pokemon?limit=${numPerPage}&offset=${(num - 1) * numPerPage}`
     try {
         const response = await axios.get(url)
         const allPokemons = await response.data.results
        // console.log(allPokemons)
 
+       //clear page
         cardWrapper.innerHTML = ""
+
         allPokemons.forEach(pokemon => {
             fetchPokemonData(pokemon.name)
         })
@@ -133,22 +136,13 @@ nextButton.addEventListener("click", (e) => {
 }, false)
 
 previousButton.addEventListener("click", (e) => {
-    e.preventDefault()
+     e.preventDefault()
     currentPageNum--
     fetchPokemon(e, currentPageNum)
 }, false)
 
 resetBtn.addEventListener("click", (e) => {
+    e.preventDefault()
     fetchPokemon(e, currentPageNum),
         searchBar.value = ""
 }, false)
-// lastPage.addEventListener("click", (e) => {
-//     e.preventDefault()
-//     fetchPokemon(e, totalPageCount)
-// })
-
-// firstPage.addEventListener("click", (e) => {
-//     e.preventDefault()
-//     fetchPokemon(e, 1)
-//     console.log()
-// } )
