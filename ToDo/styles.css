@@ -1,0 +1,15 @@
+.fa-check-circle {
+    color: red;
+}
+
+.fa-check-circle.done {
+    color: green
+}
+
+.task {
+    text-decoration: none;
+}
+
+.task.done {
+    text-decoration: line-through;
+}
