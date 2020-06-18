@@ -8,22 +8,36 @@
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/d576b8c5f4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
-    <title>Todo</title>
+    <title>Shopping List</title>
 </head>
 
 <body>
+    <div class="container">
+        <h1>Shopping List</h1>
+        <form class="search form-group">
+            <input class="form-control" type="text" name="search" id="search-bar" placeholder="search item">
+        </form>
+        <form class="add form-group">
+            <input class="form-control" type="text" name="add" id="new-task" placeholder="Add new item">
+            <div class="buttons">
+                <div>
+                    <button type="button" class="btn btn-success reset-btn">Reset</button>
+                </div>
+                <div id="add-btn">
+                    <button type="button" class="btn btn-dark add-btn">Add</button>
+                </div>
+            </div>
+            <div class="add-alert d-none">Please add item</div>
+        </form>
+        <div id="shopping-list">
 
-    <input type="text" id="new-task">
-    <button type="submit" id="add-btn">Add</button>
-    <div id="task-list">
-        <ul class="list-group">
 
-        </ul>
+            <ul class="list-group">
+                <!-- Shopping list generated -->
 
-
-
+            </ul>
+        </div>
     </div>
-
     <script src="app.js"></script>
 </body>
 

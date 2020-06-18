@@ -1,15 +1,67 @@
+body {
+    background-color:lightgoldenrodyellow;
+}
+
+.container {
+    max-width: 400px;
+}
+
+h1 {
+    text-align: center;
+}
+
+input[type=text],
+input[type=text]:focus {
+    color: darkblue;
+    border: none;
+    background: rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+}
+
 .fa-check-circle {
     color: red;
+    margin: 0 10px;
 }
 
 .fa-check-circle.done {
     color: green
 }
 
-.task {
+.item {
     text-decoration: none;
 }
 
-.task.done {
+.item.done {
     text-decoration: line-through;
+    color: brown;
+}
+
+.add-alert {
+    color: mediumvioletred;
+    text-align: center;
+}
+
+li.hide {
+    display: none;
+}
+
+#add-btn {
+    /* margin: 10px 0; */
+    text-align: center;
+}
+
+#add-btn button:hover {
+    background-color: whitesmoke;
+    color: black;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
 }
