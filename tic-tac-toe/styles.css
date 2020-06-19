@@ -1,0 +1,39 @@
+.container {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    /* background-color: cadetblue; */
+}
+
+.wrapper {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.wrapper>.box {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex: 0 0 32%;
+    height: 100px;
+    background-color:lightblue;
+    border: 1px solid black;
+    border-right: none;
+    border-bottom: none;
+    cursor: pointer;
+    font-size: 40px;
+}
+
+.box:nth-child(3n) {
+    border-right: 1px solid black;
+}
+
+.box:nth-last-child(-n+3) {
+    border-bottom: 1px solid black;
+}
+
+.box:hover {
+    background-color: lightcoral;
+}
